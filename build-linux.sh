@@ -104,6 +104,9 @@ fi
 echo "Git clone vcash in src dir" | tee -a $VCASH_ROOT/build.log
 cd $VCASH_ROOT/
 git clone https://github.com/john-connor/vcash.git src
+cd $VCASH_ROOT/src/
+git reset --hard 44c069ba86b75140f3b0cffaefe5912f23bcbe3c
+cd $VCASH_ROOT/
 
 # Deps
 if [[ $ALL_DEPS == 1 ]]; then
