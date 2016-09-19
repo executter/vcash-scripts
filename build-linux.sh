@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Deps infos
-OPENSSL_VER=1.0.1t
-OPENSSL_URL=https://www.openssl.org/source/openssl-1.0.1t.tar.gz
-OPENSSL_SHA=4a6ee491a2fdb22e519c76fdc2a628bb3cec12762cd456861d207996c8a07088
+OPENSSL_VER=1.0.1q
+OPENSSL_URL=https://www.openssl.org/source/openssl-1.0.1q.tar.gz
+OPENSSL_SHA=b3658b84e9ea606a5ded3c972a5517cd785282e7ea86b20c78aa4b773a047fb7
 
 DB_VER=6.1.29.NC
 DB_URL=https://download.oracle.com/berkeley-db/db-6.1.29.NC.tar.gz
