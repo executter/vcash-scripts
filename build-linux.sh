@@ -131,7 +131,11 @@ function build_boost {
 	cd $VCASH_ROOT/src/deps/boost/
 	echo "Build boost system" | tee -a $VCASH_ROOT/build.log
 	./bootstrap.sh
-	./bjam -j$job link=static toolset=gcc cxxflags=-std=gnu++0x --with-system release &
+	if [ -f "/etc/arch-release" ]; then
+		./bjam -j$job link=static toolset=gcc-5 cxxflags=-std=gnu++0x --with-system release &
+	else
+		./bjam -j$job link=static toolset=gcc cxxflags=-std=gnu++0x --with-system release &
+	fi
 	touch $VCASH_ROOT/src/deps/boost/current_boost_$BOOST_VER
 	# Clean
 	cd $VCASH_ROOT
@@ -169,7 +173,11 @@ fi
 # Vcash daemon
 echo "vcashd bjam build" | tee -a $VCASH_ROOT/build.log
 cd $VCASH_ROOT/src/test/
-../deps/boost/bjam -j$job toolset=gcc cxxflags=-std=gnu++0x release | tee -a $VCASH_ROOT/build.log
+if [ -f "/etc/arch-release" ]; then
+	../deps/boost/bjam -j$job toolset=gcc-5 cxxflags=-std=gnu++0x release | tee -a $VCASH_ROOT/build.log
+else
+	../deps/boost/bjam -j$job toolset=gcc cxxflags=-std=gnu++0x release | tee -a $VCASH_ROOT/build.log
+fi
 cd $VCASH_ROOT/src/test/bin/gcc-*/release/link-static/
 STACK_OUT=$(pwd)
 if [[ -f "$STACK_OUT/stack" ]]; then
